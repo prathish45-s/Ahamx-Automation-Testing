@@ -34,7 +34,7 @@ jobs:
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }} // base 64 encoded 
 
       - name: Upload Playwright report
         if: always()
