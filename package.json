@@ -1,0 +1,24 @@
+{
+  "name": "ahamx-testing",
+  "version": "1.0.0",
+  "description": "Production-grade Playwright automation framework for AhamX LLM learning platform",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:auth": "playwright test tests/auth/",
+    "test:bodhi:student": "playwright test tests/bodhi/ --project=student",
+    "test:bodhi:entity": "playwright test tests/bodhi/ --project=entity",
+    "test:chat": "playwright test tests/ask-ahamx/",
+    "test:report": "playwright show-report",
+    "test:debug": "playwright test --debug",
+    "setup": "playwright test global-setup.ts --project=setup"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.0.0",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
