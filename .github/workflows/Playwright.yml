@@ -37,6 +37,8 @@ jobs:
           USER_PASSWORD: ${{ secrets.TEST_PASSWORD }} 
           STUDENT_PROFILE_NAME: ${{ secrets.STUDENT_PROFILE_NAME }}
           ENTITY_PROFILE_NAME: ${{ secrets.ENTITY_PROFILE_NAME }}
+          LLM_RESPONSE_TIMEOUT: 60000
+          NAVIGATION_TIMEOUT: 30000
 
       - name: Upload Playwright report
         if: always()
