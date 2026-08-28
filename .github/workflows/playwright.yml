@@ -17,11 +17,7 @@ jobs:
       BASE_URL: ${{ secrets.BASE_URL }}
       USER_EMAIL: ${{ secrets.TEST_EMAIL }}
       USER_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-      STUDENT_PROFILE_NAME: "Harshavardhan MG"
-      ENTITY_PROFILE_NAME: "IIT Madras"
-      DEFAULT_TIMEOUT: "30000"
-      LLM_RESPONSE_TIMEOUT: "60000"
-      NAVIGATION_TIMEOUT: "30000"
+     
 
 
     steps:
