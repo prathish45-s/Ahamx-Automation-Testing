@@ -32,6 +32,9 @@ export class CourseLibraryPage extends BasePage {
   private readonly createCourseButton = () =>
     this.page.getByRole('button', { name: /create course/i });
 
+  private readonly myCoursesTab = () => this.page.getByRole('button', { name: /my courses/i }).or(this.page.getByText('My Courses'));
+  private readonly allCoursesTab = () => this.page.getByRole('button', { name: /all courses/i }).or(this.page.getByText('All Courses'));
+
   // ─── Actions ─────────────────────────────────────────────────────────────────
 
   async goto(): Promise<void> {
@@ -44,9 +47,24 @@ export class CourseLibraryPage extends BasePage {
     return this.courseCardEditButtons().count();
   }
 
+  async clickMyCoursesTab(): Promise<void> {
+    await this.myCoursesTab().first().click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clickAllCoursesTab(): Promise<void> {
+    await this.allCoursesTab().first().click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
   async searchCourse(query: string): Promise<void> {
     await this.searchInput().fill(query);
     await this.page.waitForTimeout(500); // debounce
+  }
+
+  async clearSearch(): Promise<void> {
+    await this.searchInput().clear();
+    await this.page.waitForTimeout(300);
   }
 
   async clickCreateCourse(): Promise<void> {
@@ -82,5 +100,10 @@ export class CourseLibraryPage extends BasePage {
 
   async assertCreateCourseButtonVisible(): Promise<void> {
     await this.assertVisible(this.createCourseButton());
+  }
+
+  async assertTabsVisible(): Promise<void> {
+    await this.assertVisible(this.myCoursesTab().first());
+    await this.assertVisible(this.allCoursesTab().first());
   }
 }

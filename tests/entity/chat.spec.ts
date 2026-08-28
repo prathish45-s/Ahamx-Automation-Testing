@@ -1,6 +1,8 @@
 import { test, expect } from '../../src/fixtures/authenticated.fixture';
 import { ENV } from '../../src/config/env.config';
 
+import { NavigationManager } from '../../src/utils/navigation-manager';
+
 /**
  * Entity Profile — Ask AhamX Chat Tests
  *
@@ -11,17 +13,9 @@ test.describe('Entity Profile — Ask AhamX Chat', () => {
   // LLM responses can take a while to stream
   test.setTimeout(90000);
 
-  test.beforeEach(async ({ page, bodhiDashboard, profileSwitcher }) => {
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
-    // Ensure entity profile — try switching, but don't fail if already there
-    try {
-      await profileSwitcher.switchToEntityProfile(ENV.ENTITY_PROFILE_NAME);
-    } catch {
-      // Already in entity profile or switch failed — continue
-    }
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
+  test.beforeEach(async ({ sharedPage }) => {
+    await NavigationManager.recoverState(sharedPage);
+    await NavigationManager.ensureEntityDashboard(sharedPage);
   });
 
   test('TC-ENT-CHAT-01: Ask AhamX chat opens from entity Bodhi dashboard', async ({ bodhiDashboard, chatPage }) => {
@@ -54,18 +48,16 @@ test.describe('Entity Profile — Learning Workspace Chat', () => {
   // LLM responses can take a while to stream
   test.setTimeout(90000);
 
-  test.beforeEach(async ({ bodhiDashboard, profileSwitcher }) => {
-    await bodhiDashboard.goto();
-    await profileSwitcher.switchToEntityProfile(ENV.ENTITY_PROFILE_NAME);
-    await bodhiDashboard.goto();
+  test.beforeEach(async ({ sharedPage }) => {
+    await NavigationManager.recoverState(sharedPage);
+    await NavigationManager.ensureEntityDashboard(sharedPage);
   });
 
   test('TC-ENT-WS-01: Opening a cohort shows course content and Ask AhamX drawer', async ({
-    page, bodhiDashboard, learningWorkspace, chatPage,
+    sharedPage, bodhiDashboard, learningWorkspace, chatPage,
   }) => {
     // Find a direct /learn link from the entity dashboard
-    await bodhiDashboard.goto();
-    const learnLinks = page.locator('a[href*="/learn"]');
+    const learnLinks = sharedPage.locator('a[href*="/learn"]');
     const learnCount = await learnLinks.count();
 
     if (learnCount === 0) {
@@ -80,8 +72,7 @@ test.describe('Entity Profile — Learning Workspace Chat', () => {
       return;
     }
 
-    await page.goto(href);
-    await page.waitForLoadState('domcontentloaded');
+    await sharedPage.goto(href, { waitUntil: 'domcontentloaded' });
     await learningWorkspace.assertWorkspaceLoaded();
     await learningWorkspace.assertAskAhamXButtonVisible();
     await learningWorkspace.openAskAhamX();

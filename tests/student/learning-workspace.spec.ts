@@ -1,6 +1,8 @@
 import { test, expect } from '../../src/fixtures/authenticated.fixture';
 import { ENV } from '../../src/config/env.config';
 
+import { NavigationManager } from '../../src/utils/navigation-manager';
+
 /**
  * Student Profile — Learning Workspace Tests
  *
@@ -20,94 +22,72 @@ test.describe('Student Profile — Learning Workspace', () => {
 
   let learnUrl = '';
 
-  test.beforeEach(async ({ page, bodhiDashboard, profileSwitcher }) => {
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
-    try {
-      await profileSwitcher.switchToStudentProfile(ENV.STUDENT_PROFILE_NAME);
-    } catch {
-      // Already in student profile
-    }
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
-
-    // Get a valid learn URL from Continue Learning section
-    const links = bodhiDashboard.getContinueLearningLearnLinks();
-    await links.first().waitFor({ state: 'visible', timeout: 15000 }).catch(() => {});
-    learnUrl = (await links.first().getAttribute('href')) ?? '';
+  test.beforeEach(async ({ sharedPage }) => {
+    await NavigationManager.recoverState(sharedPage);
+    learnUrl = await NavigationManager.ensureCoursePlayerFromContinueLearning(sharedPage);
   });
 
   test('TC-STU-LW-01: Learning workspace loads from a Continue Learning link', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     await learningWorkspace.assertUrlIsLearnPage();
     await learningWorkspace.assertWorkspaceLoaded();
   });
 
   test('TC-STU-LW-02: URL contains resume parameters (conceptId)', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     await learningWorkspace.assertUrlHasResumeParams();
   });
 
   test('TC-STU-LW-03: Ask AhamX button is visible in learning workspace', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     await learningWorkspace.assertAskAhamXButtonVisible();
   });
 
   test('TC-STU-LW-04: Description tab is visible in learning workspace', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     // Check for tab or button with "Description" label
-    const descTab = page.getByRole('tab', { name: /description/i })
-      .or(page.getByRole('button', { name: /description/i }))
-      .or(page.getByText('Description').first());
+    const descTab = sharedPage.getByRole('tab', { name: /description/i })
+      .or(sharedPage.getByRole('button', { name: /description/i }))
+      .or(sharedPage.getByText('Description').first());
     await expect(descTab).toBeVisible({ timeout: 10000 });
   });
 
   test('TC-STU-LW-05: Course Outline tab is visible and clickable', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
-    const outlineTab = page.getByRole('tab', { name: /course outline/i })
-      .or(page.getByRole('button', { name: /course outline/i }))
-      .or(page.getByText('Course Outline'));
+    const outlineTab = sharedPage.getByRole('tab', { name: /course outline/i })
+      .or(sharedPage.getByRole('button', { name: /course outline/i }))
+      .or(sharedPage.getByText('Course Outline'));
     const isVisible = await outlineTab.isVisible({ timeout: 5000 }).catch(() => false);
     if (isVisible) {
       await outlineTab.click();
-      await page.waitForTimeout(500);
+      await sharedPage.waitForTimeout(500);
       // Verify we're still on the same page
-      await expect(page).toHaveURL(/\/learn/);
+      await expect(sharedPage).toHaveURL(/\/learn/);
       
       // Verify the outline contains items (chapters/lessons)
       await learningWorkspace.assertCourseOutlineHasItems();
@@ -117,17 +97,15 @@ test.describe('Student Profile — Learning Workspace', () => {
   });
 
   test('TC-STU-LW-06: Quiz tab is visible', async ({
-    page, learningWorkspace,
+    sharedPage, learningWorkspace,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
-    const quizTab = page.getByRole('tab', { name: /quiz/i })
-      .or(page.getByRole('button', { name: /quiz/i }))
-      .or(page.getByText('Quiz').first());
+    const quizTab = sharedPage.getByRole('tab', { name: /quiz/i })
+      .or(sharedPage.getByRole('button', { name: /quiz/i }))
+      .or(sharedPage.getByText('Quiz').first());
     const isVisible = await quizTab.isVisible({ timeout: 5000 }).catch(() => false);
     if (!isVisible) {
       test.skip(true, 'Quiz tab not available in this workspace layout');
@@ -137,27 +115,23 @@ test.describe('Student Profile — Learning Workspace', () => {
   });
 
   test('TC-STU-LW-07: Opening Ask AhamX in workspace shows chat drawer', async ({
-    page, learningWorkspace, chatPage,
+    sharedPage, learningWorkspace, chatPage,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     await learningWorkspace.openAskAhamX();
     await chatPage.assertChatOpen();
   });
 
   test('TC-STU-LW-08: LLM responds to a question asked in the learning workspace', async ({
-    page, learningWorkspace, chatPage,
+    sharedPage, learningWorkspace, chatPage,
   }) => {
     if (!learnUrl) {
       test.skip(true, 'No /learn links found on student dashboard');
       return;
     }
-    await page.goto(learnUrl);
-    await page.waitForLoadState('domcontentloaded');
     await learningWorkspace.openAskAhamX();
     await chatPage.sendMessage('Summarize this concept for me.');
     await chatPage.assertResponseReceived();
