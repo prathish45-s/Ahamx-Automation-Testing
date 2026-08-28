@@ -1,0 +1,32 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - link [ref=f1e5] [cursor=pointer]:
+        - /url: /
+        - img "AhamX logo" [ref=f1e6]
+      - generic [ref=f1e9]:
+        - heading "Sign in" [level=2] [ref=f1e10]
+        - generic [ref=f1e12]:
+          - group [ref=f1e13]:
+            - generic [ref=f1e14]:
+              - text: Email or Mobile Number
+              - generic [ref=f1e15]: "*"
+            - textbox "Enter your email ID" [ref=f1e16]
+          - group [ref=f1e17]:
+            - generic [ref=f1e18]:
+              - generic [ref=f1e19]: Password
+              - generic [ref=f1e20]: "*"
+            - generic [ref=f1e21]:
+              - textbox "Enter your password" [ref=f1e22]
+              - button "Show password" [ref=f1e24] [cursor=pointer]
+          - link "Forgot Password?" [ref=f1e29] [cursor=pointer]:
+            - /url: /forgot-password
+          - button "Sign in" [ref=f1e30] [cursor=pointer]
+        - paragraph [ref=f1e32]: Don't have an account? Sign Up
+    - generic [ref=f1e40]:
+      - generic [ref=f1e41]:
+        - heading "Connect. Apply." [level=1] [ref=f1e42]
+        - heading "Succeed. Together." [level=1] [ref=f1e43]
+      - paragraph [ref=f1e44]: Join thousands of students turning college stress into success stories
+  - alert [ref=f1e45]
+  - region "Notifications, bottom-end (alt+T)"

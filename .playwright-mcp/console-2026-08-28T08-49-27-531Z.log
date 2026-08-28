@@ -1,0 +1,68 @@
+[    1110ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rk (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:82472)
+    at oU (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:132000)
+    at ic (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:160759)
+    at https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:160604
+    at is (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:160612)
+    at u5 (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:156914)
+    at iB (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:178473)
+    at iF (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:176692)
+    at iU (https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:177044)
+    at https://staging.skolarx.com/_next/static/chunks/main-app-a277418896bdf705.js:1:176321
+[    1121ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://staging.skolarx.com/api/auth/session:0
+[   11222ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   11223ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   11223ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278942)
+    at R.triggerFlush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:279429)
+    at https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:279780 @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   12292ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   12292ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   12292ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at async R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278921) @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   14611ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   14611ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   14611ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at async R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278921) @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   14611ms] [WARNING] [ActivitySDK] All retry attempts exhausted @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   14611ms] [WARNING] [ActivitySDK] Batch send failed: 0 Failed to fetch @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   21052ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   21052ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   21052ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278942)
+    at R.triggerFlush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:279429)
+    at https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:279780 @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   21965ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   21966ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   21966ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at async R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278921) @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   24110ms] [ERROR] Access to fetch at 'https://api-staging.skolarx.com/api/v1/activity/events' from origin 'https://staging.skolarx.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://staging.skolarx.com/:0
+[   24110ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api-staging.skolarx.com/api/v1/activity/events:0
+[   24110ms] [WARNING] [ActivitySDK] Fetch failed: TypeError: Failed to fetch
+    at window.fetch (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:489162)
+    at T (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:271881)
+    at P.transport (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:273346)
+    at P.send (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:272527)
+    at async R.flush (https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:1:278921) @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   24110ms] [WARNING] [ActivitySDK] All retry attempts exhausted @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0
+[   24110ms] [WARNING] [ActivitySDK] Batch send failed: 0 Failed to fetch @ https://staging.skolarx.com/_next/static/chunks/app/layout-31433db78781bf84.js:0

@@ -21,6 +21,8 @@ export class LoginPage extends BasePage {
   private readonly signInButton = () => this.getByRole('button', { name: 'Sign in' });
   private readonly forgotPasswordLink = () => this.getByRole('link', { name: 'Forgot Password?' });
   private readonly signUpLink = () => this.page.locator('text=Sign Up').last();
+  private readonly showPasswordButton = () => this.getByRole('button', { name: /show password|hide password/i }).or(this.page.locator('button').filter({ has: this.page.locator('svg') }).last());
+  private readonly acceptCookiesButton = () => this.getByRole('button', { name: 'Accept All Cookies' });
   // "Sign in" is rendered as styled text, not a semantic <h1> — use text matcher
   private readonly signInHeading = () => this.page.locator('h1, h2').filter({ hasText: /^sign in$/i }).or(this.getByText('Sign in').first());
   private readonly infoMessage = () =>
@@ -66,6 +68,16 @@ export class LoginPage extends BasePage {
     await this.signUpLink().click();
   }
 
+  async clickShowPassword(): Promise<void> {
+    await this.showPasswordButton().click();
+  }
+
+  async clickAcceptCookies(): Promise<void> {
+    if (await this.acceptCookiesButton().isVisible().catch(() => false)) {
+      await this.acceptCookiesButton().click();
+    }
+  }
+
   // ─── Assertions ──────────────────────────────────────────────────────────────
 
   async assertLoginPageVisible(): Promise<void> {
@@ -102,5 +114,9 @@ export class LoginPage extends BasePage {
 
   async assertSignUpLinkVisible(): Promise<void> {
     await this.assertVisible(this.signUpLink());
+  }
+
+  async assertPasswordType(type: 'password' | 'text'): Promise<void> {
+    await expect(this.passwordInput()).toHaveAttribute('type', type);
   }
 }

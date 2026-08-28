@@ -1,0 +1,217 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "AhamX Logo" [ref=e8]
+        - generic [ref=e9]:
+          - link "Platform" [ref=e10] [cursor=pointer]:
+            - /url: "#platform"
+          - link "Capabilities" [ref=e11] [cursor=pointer]:
+            - /url: "#capabilities"
+          - link "Who We Serve" [ref=e12] [cursor=pointer]:
+            - /url: "#ecosystem"
+          - link "Security" [ref=e13] [cursor=pointer]:
+            - /url: "#security"
+          - generic [ref=e14]:
+            - link [ref=e15] [cursor=pointer]:
+              - /url: /login
+              - button "Sign in" [ref=e16]
+            - link [ref=e17] [cursor=pointer]:
+              - /url: /signup
+              - button "Sign up" [ref=e18]
+    - generic [ref=e35]:
+      - heading "AhamX — The Complete Intelligence" [level=2] [ref=e36]
+      - paragraph [ref=e37]: Your Digital Twin for Life
+      - paragraph [ref=e38]: AhamX is a neural-native platform that turns knowledge into momentum. It builds a durable digital twin that understands your goals, context, and history so every next step in learning and career is timely, relevant, and measurable.
+      - generic [ref=e39]:
+        - link [ref=e40] [cursor=pointer]:
+          - /url: /signup
+          - button "Sign up" [ref=e41]
+        - link [ref=e42] [cursor=pointer]:
+          - /url: /login
+          - button "Sign In" [ref=e43]
+      - generic [ref=e44]:
+        - paragraph [ref=e48]: Neural-Native
+        - paragraph [ref=e52]: Privacy by Design
+        - paragraph [ref=e56]: AI-Powered
+        - paragraph [ref=e60]: Measurable Impact
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - paragraph [ref=e65]: What AhamX Is (and Is Not)
+        - heading "Beyond Traditional Platforms" [level=2] [ref=e66]
+        - paragraph [ref=e67]: AhamX combines the strengths of a learning platform, a professional network, and a career engine—without the limitations of any one of them.
+      - generic [ref=e68]:
+        - generic [ref=e70]:
+          - heading "Not an LMS" [level=2] [ref=e74]
+          - paragraph [ref=e75]: Knowledge-first and neural-native; concepts are reusable, dependencies explicit, and multiple learning paths are supported.
+        - generic [ref=e77]:
+          - heading "Not a Social Network" [level=2] [ref=e81]
+          - paragraph [ref=e82]: Relationships form around knowledge signals and evidence not likes, follows, or noise.
+        - generic [ref=e84]:
+          - heading "Not a Job Board" [level=2] [ref=e88]
+          - paragraph [ref=e89]: Opportunity matching uses verified skills, mastery evidence, and knowledge trails that demonstrate capability.
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - paragraph [ref=e94]: Core Capabilities
+        - heading "Intelligence That Powers Growth" [level=2] [ref=e95]
+        - paragraph [ref=e96]: Our advanced capabilities enhance every aspect of learning and career development, creating measurable momentum.
+      - generic [ref=e97]:
+        - generic [ref=e99]:
+          - heading "Unified Digital Twin" [level=2] [ref=e104]
+          - paragraph [ref=e105]: A single evolving profile carrying context across courses, projects, roles, and organizations.
+          - generic [ref=e106]:
+            - paragraph [ref=e110]: Continuous context across domains
+            - paragraph [ref=e114]: Portable professional identity
+            - paragraph [ref=e118]: Lifetime knowledge accumulation
+            - paragraph [ref=e122]: Cross-organizational insights
+        - generic [ref=e124]:
+          - heading "Neural Knowledge Intelligence" [level=2] [ref=e129]
+          - paragraph [ref=e130]: Concepts, skills, content, people, and entities are connected in a living neural fabric that enables reuse, diagnostics, and multi-path learning.
+          - generic [ref=e131]:
+            - paragraph [ref=e135]: Concept-level dependencies
+            - paragraph [ref=e139]: Skill diagnostics
+            - paragraph [ref=e143]: Multi-path learning
+            - paragraph [ref=e147]: Intelligent queries
+        - generic [ref=e149]:
+          - heading "MentorX Guidance" [level=2] [ref=e154]
+          - paragraph [ref=e155]: Context aware tutoring and retrieval-augmented answers aligned to objectives and prior work.
+          - generic [ref=e156]:
+            - paragraph [ref=e160]: Socratic guidance
+            - paragraph [ref=e164]: Goal-aware responses
+            - paragraph [ref=e168]: Hierarchical retrieval
+            - paragraph [ref=e172]: Adaptive learning paths
+        - generic [ref=e174]:
+          - heading "Expert × AI Co-Creation" [level=2] [ref=e179]
+          - paragraph [ref=e180]: Experts define standards; AI generates structured drafts for rapid refinement at scale.
+          - generic [ref=e181]:
+            - paragraph [ref=e185]: Fast content generation
+            - paragraph [ref=e189]: Consistent standards
+            - paragraph [ref=e193]: Transparent provenance
+            - paragraph [ref=e197]: Expert-in-the-loop
+        - generic [ref=e199]:
+          - heading "Privacy by Design" [level=2] [ref=e204]
+          - paragraph [ref=e205]: Fine-grained controls (Private, Entity, User, Public) with lineage-aware access across teams and institutions.
+          - generic [ref=e206]:
+            - paragraph [ref=e210]: Granular privacy controls
+            - paragraph [ref=e214]: Entity-based access
+            - paragraph [ref=e218]: Lineage tracking
+            - paragraph [ref=e222]: Secure collaboration
+    - generic [ref=e225]:
+      - generic [ref=e226]:
+        - paragraph [ref=e227]: Pillars in This Release
+        - heading "Two Powerful Platforms" [level=2] [ref=e228]
+      - generic [ref=e229]:
+        - generic [ref=e231]:
+          - generic [ref=e236]:
+            - heading "AhamX • Bodhi" [level=2] [ref=e237]
+            - paragraph [ref=e238]: Learning & Mastery
+          - paragraph [ref=e239]: Design adaptive, reusable learning that maps directly to skills and outcomes.
+          - generic [ref=e240]:
+            - paragraph [ref=e244]: Concept-level structure with explicit prerequisites and multiple valid paths
+            - paragraph [ref=e248]: MentorX tutoring with retrieval-augmented, goal-aware guidance
+            - paragraph [ref=e252]: Progress analytics at concept, skill, and program levels
+          - link "Explore Bodhi" [ref=e253] [cursor=pointer]:
+            - /url: /home/bodhi
+        - generic [ref=e256]:
+          - generic [ref=e261]:
+            - heading "AhamX • Sarathi" [level=2] [ref=e262]
+            - paragraph [ref=e263]: Network & Opportunity
+          - paragraph [ref=e264]: Turn knowledge into visibility and opportunity across teams, institutions, and industries.
+          - generic [ref=e265]:
+            - paragraph [ref=e269]: Knowledge trails and portfolios that surface real evidence of skill
+            - paragraph [ref=e273]: Neural-aware discovery of collaborators, mentors, projects, and roles
+            - paragraph [ref=e277]: Cross-entity insights for internal and external contexts
+          - button "Coming Soon" [disabled] [ref=e278]
+    - generic [ref=e281]:
+      - generic [ref=e282]:
+        - paragraph [ref=e283]: How It Works
+        - heading "How AhamX Works" [level=2] [ref=e284]
+      - generic [ref=e285]:
+        - generic [ref=e287]:
+          - generic [ref=e288]: "1"
+          - heading "Neural-Native Foundation" [level=2] [ref=e289]
+          - paragraph [ref=e290]: A neural knowledge fabric connects concepts, skills, people, and entities—enabling reuse, skill diagnostics, and intelligent queries.
+        - generic [ref=e292]:
+          - generic [ref=e293]: "2"
+          - heading "MentorX Tutoring" [level=2] [ref=e294]
+          - paragraph [ref=e295]: Hierarchical retrieval, Socratic guidance, and goal alignment adapt to each learners profile and history.
+        - generic [ref=e297]:
+          - generic [ref=e298]: "3"
+          - heading "Expert × AI Co-Creation" [level=2] [ref=e299]
+          - paragraph [ref=e300]: Experts set intent and standards; AI produces draft assets in minutes with transparent provenance for quick iteration.
+        - generic [ref=e302]:
+          - generic [ref=e303]: "4"
+          - heading "Lineage-Aware Intelligence" [level=2] [ref=e304]
+          - paragraph [ref=e305]: Access and insights follow entity lineage and privacy rules, enabling analytics and collaboration without re-permissioning overhead.
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - paragraph [ref=e310]: Who We Serve
+        - heading "Who AhamX Serves" [level=2] [ref=e311]
+      - generic [ref=e312]:
+        - generic [ref=e314]:
+          - heading "Universities & Schools" [level=2] [ref=e318]
+          - paragraph [ref=e319]: Build adaptive programs, reuse concepts across courses, and measure mastery at concept and skill levels.
+        - generic [ref=e321]:
+          - heading "Enterprises & Public Sector" [level=2] [ref=e325]
+          - paragraph [ref=e326]: Map real stacks to skills, upskill at speed, and surface internal expertise via knowledge trails.
+        - generic [ref=e328]:
+          - heading "Communities & Research Labs" [level=2] [ref=e332]
+          - paragraph [ref=e333]: Co-create materials, form micro-communities, and showcase contribution through neural-visible work.
+    - generic [ref=e336]:
+      - generic [ref=e337]:
+        - paragraph [ref=e338]: Security & Privacy
+        - heading "Security, Privacy & Governance" [level=2] [ref=e339]
+      - generic [ref=e340]:
+        - generic [ref=e342]:
+          - heading "Privacy-First Controls" [level=2] [ref=e346]
+          - paragraph [ref=e347]: Private, Entity, User, and Public modes at component and data levels.
+        - generic [ref=e349]:
+          - heading "Lineage-Based Access" [level=2] [ref=e353]
+          - paragraph [ref=e354]: Intelligence sharing respects organizational structures while enabling change and collaboration over time.
+        - generic [ref=e356]:
+          - heading "Transparent Provenance" [level=2] [ref=e360]
+          - paragraph [ref=e361]: Expert-in-the-loop creation ensures auditability and consistent standards at scale.
+    - generic [ref=e366]:
+      - heading "Build Your Digital Twin for Life with AhamX" [level=2] [ref=e367]
+      - paragraph [ref=e368]: Pilot AhamX to connect learning, knowledge, and opportunity across your organization.
+      - generic [ref=e369]:
+        - link [ref=e370] [cursor=pointer]:
+          - /url: /signup
+          - button "Sign up" [ref=e371]
+        - button "Book a Demo" [ref=e372] [cursor=pointer]
+    - generic [ref=e374]:
+      - generic [ref=e375]:
+        - generic [ref=e377]:
+          - heading "AhamX" [level=2] [ref=e378]
+          - paragraph [ref=e379]: AhamX is a neural-native, AI-powered platform for learning and professional growth. Build a durable digital twin, co-create content with AI, and surface opportunities through knowledge signals.
+          - generic [ref=e380]:
+            - link [ref=e381] [cursor=pointer]:
+              - /url: https://x.com/zenteiq
+            - link [ref=e384] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/zenteiq/posts/?feedView=all
+            - link [ref=e387] [cursor=pointer]:
+              - /url: https://www.facebook.com/share/1Jzu2cnBsV/
+            - link [ref=e390] [cursor=pointer]:
+              - /url: https://www.instagram.com/zenteiq/
+        - generic [ref=e394]:
+          - heading "Platform" [level=2] [ref=e395]
+          - generic [ref=e396]:
+            - link "Features" [ref=e397] [cursor=pointer]:
+              - /url: https://zenteiq.ai/
+            - link "AI Capabilities" [ref=e398] [cursor=pointer]:
+              - /url: https://zenteiq.ai/
+        - generic [ref=e400]:
+          - heading "Company" [level=2] [ref=e401]
+          - generic [ref=e402]:
+            - link "About Us" [ref=e403] [cursor=pointer]:
+              - /url: https://zenteiq.ai/
+            - link "Contact" [ref=e404] [cursor=pointer]:
+              - /url: https://zenteiq.ai/
+            - link "Legal" [ref=e405] [cursor=pointer]:
+              - /url: https://zenteiq.ai/
+      - separator [ref=e406]
+      - paragraph [ref=e408]: © 2025 AhamX. All rights reserved.
+  - region "Notifications, bottom-end (alt+T)"
