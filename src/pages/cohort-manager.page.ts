@@ -27,9 +27,13 @@ export class CohortManagerPage extends BasePage {
     this.page.locator('div').filter({ has: this.page.locator('h3') }).filter({ hasText: /Manage|Course/i });
 
   private readonly createCohortButton = () =>
-    this.getByRole('button', { name: /create|add cohort/i });
+    this.getByRole('button', { name: /create|add|new cohort/i });
   
   private readonly searchInput = () => this.page.getByPlaceholder('Search Cohorts...');
+
+  private readonly allCohortsTab = () => this.page.getByRole('button', { name: /all cohorts/i }).or(this.page.getByText('All Cohorts'));
+  private readonly publishedTab = () => this.page.getByRole('button', { name: /published/i }).or(this.page.getByText('Published'));
+  private readonly draftTab = () => this.page.getByRole('button', { name: /draft/i }).or(this.page.getByText('Draft'));
 
   // ─── Actions ─────────────────────────────────────────────────────────────────
 
@@ -49,6 +53,34 @@ export class CohortManagerPage extends BasePage {
       await input.fill(query);
       await this.page.waitForTimeout(500); // debounce
     }
+  }
+
+  async clearSearch(): Promise<void> {
+    const input = this.searchInput();
+    if (await input.isVisible().catch(() => false)) {
+      await input.clear();
+      await this.page.waitForTimeout(300); // debounce
+    }
+  }
+
+  async clickAllCohortsTab(): Promise<void> {
+    await this.allCohortsTab().first().click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clickPublishedTab(): Promise<void> {
+    await this.publishedTab().first().click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clickDraftTab(): Promise<void> {
+    await this.draftTab().first().click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clickCreateCohort(): Promise<void> {
+    await this.createCohortButton().click();
+    await this.page.waitForLoadState('domcontentloaded');
   }
 
   async clickFirstCohort(): Promise<void> {
@@ -86,5 +118,11 @@ export class CohortManagerPage extends BasePage {
   async assertCohortCardsExist(): Promise<void> {
     const count = await this.getCohortCount();
     expect(count).toBeGreaterThan(0);
+  }
+
+  async assertTabsVisible(): Promise<void> {
+    await this.assertVisible(this.allCohortsTab().first());
+    await this.assertVisible(this.publishedTab().first());
+    await this.assertVisible(this.draftTab().first());
   }
 }

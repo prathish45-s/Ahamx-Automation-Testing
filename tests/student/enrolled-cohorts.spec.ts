@@ -1,6 +1,8 @@
 import { test, expect } from '../../src/fixtures/authenticated.fixture';
 import { ENV } from '../../src/config/env.config';
 
+import { NavigationManager } from '../../src/utils/navigation-manager';
+
 /**
  * Student Profile — My Enrolled Cohorts Tests
  *
@@ -14,16 +16,9 @@ import { ENV } from '../../src/config/env.config';
  * Project: student
  */
 test.describe('Student Profile — My Enrolled Cohorts', () => {
-  test.beforeEach(async ({ bodhiDashboard, profileSwitcher }) => {
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
-    try {
-      await profileSwitcher.switchToStudentProfile(ENV.STUDENT_PROFILE_NAME);
-    } catch {
-      // Already in student profile
-    }
-    await bodhiDashboard.goto();
-    await bodhiDashboard.dismissTourIfPresent();
+  test.beforeEach(async ({ sharedPage }) => {
+    await NavigationManager.recoverState(sharedPage);
+    await NavigationManager.ensureStudentDashboard(sharedPage);
   });
 
   test('TC-STU-EC-01: My Enrolled Cohorts section is visible on student dashboard', async ({
@@ -39,11 +34,11 @@ test.describe('Student Profile — My Enrolled Cohorts', () => {
   });
 
   test('TC-STU-EC-03: Enrolled cohort card shows cohort name and author', async ({
-    page, bodhiDashboard,
+    sharedPage, bodhiDashboard,
   }) => {
     await bodhiDashboard.assertEnrolledCohortsVisible();
     // Each card button has aria-label "View cohort: <Name>"
-    const firstCard = page.getByRole('button', { name: /view cohort:/i }).first();
+    const firstCard = sharedPage.getByRole('button', { name: /view cohort:/i }).first();
     await expect(firstCard).toBeVisible({ timeout: 10000 });
 
     // Card should contain a heading with the cohort name
@@ -56,10 +51,10 @@ test.describe('Student Profile — My Enrolled Cohorts', () => {
   });
 
   test('TC-STU-EC-04: Enrolled cohort card shows course count', async ({
-    page, bodhiDashboard,
+    sharedPage, bodhiDashboard,
   }) => {
     await bodhiDashboard.assertEnrolledCohortsVisible();
-    const firstCard = page.getByRole('button', { name: /view cohort:/i }).first();
+    const firstCard = sharedPage.getByRole('button', { name: /view cohort:/i }).first();
     await expect(firstCard).toBeVisible({ timeout: 10000 });
     // Course count text (e.g. "1 Course •" or "3 Courses •")
     const courseCount = firstCard.getByText(/\d+ Course/i).first();
@@ -67,62 +62,62 @@ test.describe('Student Profile — My Enrolled Cohorts', () => {
   });
 
   test('TC-STU-EC-05: Clicking an enrolled cohort card navigates to cohort detail', async ({
-    page, bodhiDashboard,
+    sharedPage, bodhiDashboard,
   }) => {
     await bodhiDashboard.assertEnrolledCohortCardsExist();
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     // URL should change to a cohort detail page
-    await expect(page).toHaveURL(/\/home\/bodhi\/.+/);
+    await expect(sharedPage).toHaveURL(/\/home\/bodhi\/.+/);
   });
 
   test('TC-STU-EC-06: Cohort detail page shows cohort title', async ({
-    page, bodhiDashboard, cohortDetail,
+    sharedPage, bodhiDashboard, cohortDetail,
   }) => {
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     await cohortDetail.assertCohortTitleVisible();
   });
 
   test('TC-STU-EC-07: Cohort detail page has course links to the player', async ({
-    page, bodhiDashboard, cohortDetail,
+    sharedPage, bodhiDashboard, cohortDetail,
   }) => {
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     await cohortDetail.assertCourseLinksExist();
   });
 
   test('TC-STU-EC-08: Clicking a course in cohort detail navigates to learning workspace', async ({
-    page, bodhiDashboard, cohortDetail, learningWorkspace,
+    sharedPage, bodhiDashboard, cohortDetail, learningWorkspace,
   }) => {
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     const count = await cohortDetail.getCourseCount();
     if (count === 0) {
       test.skip(true, 'Cohort has no course links — skipping workspace navigation test');
       return;
     }
     await cohortDetail.clickFirstCourse();
-    await expect(page).toHaveURL(/\/learn/);
+    await expect(sharedPage).toHaveURL(/\/learn/);
     await learningWorkspace.assertAskAhamXButtonVisible();
   });
 
   test('TC-STU-EC-09: Cohort detail page shows metadata (Author and Publish Date)', async ({
-    page, bodhiDashboard, cohortDetail,
+    sharedPage, bodhiDashboard, cohortDetail,
   }) => {
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     await cohortDetail.assertMetadataVisible();
   });
 
   test('TC-STU-EC-10: Cohort detail page shows Courses and Channels tabs', async ({
-    page, bodhiDashboard, cohortDetail,
+    sharedPage, bodhiDashboard, cohortDetail,
   }) => {
-    await bodhiDashboard.clickEnrolledCohortCard(0);
+    await NavigationManager.ensureEnrolledCohortDetail(sharedPage, 0);
     await cohortDetail.assertTabsVisible();
   });
 
   test('TC-STU-EC-11: Scroll right button exists in enrolled cohorts carousel', async ({
-    page, bodhiDashboard,
+    sharedPage, bodhiDashboard,
   }) => {
     await bodhiDashboard.assertEnrolledCohortsVisible();
     // Scroll right button in the enrolled cohorts row
-    const scrollBtn = page.getByRole('button', { name: /scroll right/i }).first();
+    const scrollBtn = sharedPage.getByRole('button', { name: /scroll right/i }).first();
     await expect(scrollBtn).toBeVisible({ timeout: 5000 });
   });
 });
