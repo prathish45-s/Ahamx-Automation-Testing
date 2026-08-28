@@ -79,7 +79,14 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
     await page.getByRole('button', { name: 'Sign in' }).click();
 
     // Second attempt with longer timeout
-    await page.waitForURL(/\/home\/bodhi/, { timeout: 60000, waitUntil: 'domcontentloaded' });
+    try {
+      await page.waitForURL(/\/home\/bodhi/, { timeout: 60000, waitUntil: 'domcontentloaded' });
+    } catch (error) {
+      console.log('[global-setup] Second login attempt failed. Taking screenshot...');
+      await page.screenshot({ path: 'login-failure-ci.png', fullPage: true });
+      console.log('[global-setup] Screenshot saved as login-failure-ci.png');
+      throw error;
+    }
   }
 
   console.log(`[global-setup] Login successful. URL: ${page.url()}`);
