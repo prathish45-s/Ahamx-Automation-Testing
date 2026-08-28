@@ -17,6 +17,8 @@ jobs:
       BASE_URL: ${{ secrets.BASE_URL }}
       USER_EMAIL: ${{ secrets.TEST_EMAIL }}
       USER_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+     
+
 
     steps:
       - name: Checkout repository

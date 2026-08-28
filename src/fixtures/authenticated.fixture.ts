@@ -15,6 +15,7 @@ import { LearningWorkspacePage } from '../pages/learning-workspace.page';
  * Extended test fixtures inject these into every test function.
  */
 export type PageObjects = {
+  sharedPage: Page;
   loginPage: LoginPage;
   bodhiDashboard: BodhiDashboardPage;
   profileSwitcher: ProfileSwitcherPage;
@@ -28,38 +29,45 @@ export type PageObjects = {
 
 /**
  * `test` extended with all Page Objects injected automatically.
- *
- * Usage in spec files:
- *   import { test } from '@fixtures/authenticated.fixture';
- *   test('...', async ({ bodhiDashboard, chatPage }) => { ... });
+ * Uses a worker-scoped `sharedPage` for optimized state reuse.
  */
-export const test = base.extend<PageObjects>({
-  loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
+export const test = base.extend<PageObjects, { sharedPage: Page }>({
+  // Worker-scoped page fixture: opens once per worker, stays open across tests
+  sharedPage: [async ({ browser }, use) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await use(page);
+    await page.close();
+    await context.close();
+  }, { scope: 'worker' }],
+
+  // Note: we pass `sharedPage` instead of the default test-scoped `page` to the POMs
+  loginPage: async ({ sharedPage }, use) => {
+    await use(new LoginPage(sharedPage));
   },
-  bodhiDashboard: async ({ page }, use) => {
-    await use(new BodhiDashboardPage(page));
+  bodhiDashboard: async ({ sharedPage }, use) => {
+    await use(new BodhiDashboardPage(sharedPage));
   },
-  profileSwitcher: async ({ page }, use) => {
-    await use(new ProfileSwitcherPage(page));
+  profileSwitcher: async ({ sharedPage }, use) => {
+    await use(new ProfileSwitcherPage(sharedPage));
   },
-  chatPage: async ({ page }, use) => {
-    await use(new AskAhamXChatPage(page));
+  chatPage: async ({ sharedPage }, use) => {
+    await use(new AskAhamXChatPage(sharedPage));
   },
-  conceptManager: async ({ page }, use) => {
-    await use(new ConceptManagerPage(page));
+  conceptManager: async ({ sharedPage }, use) => {
+    await use(new ConceptManagerPage(sharedPage));
   },
-  courseLibrary: async ({ page }, use) => {
-    await use(new CourseLibraryPage(page));
+  courseLibrary: async ({ sharedPage }, use) => {
+    await use(new CourseLibraryPage(sharedPage));
   },
-  cohortManager: async ({ page }, use) => {
-    await use(new CohortManagerPage(page));
+  cohortManager: async ({ sharedPage }, use) => {
+    await use(new CohortManagerPage(sharedPage));
   },
-  cohortDetail: async ({ page }, use) => {
-    await use(new CohortDetailPage(page));
+  cohortDetail: async ({ sharedPage }, use) => {
+    await use(new CohortDetailPage(sharedPage));
   },
-  learningWorkspace: async ({ page }, use) => {
-    await use(new LearningWorkspacePage(page));
+  learningWorkspace: async ({ sharedPage }, use) => {
+    await use(new LearningWorkspacePage(sharedPage));
   },
 });
 
