@@ -118,7 +118,6 @@ test.describe('Entity Profile — Cohort Manager', () => {
       await sharedPage.keyboard.press('Escape');
     }
     
-    const modalHeading = sharedPage.getByRole('heading', { name: /create cohort|new cohort/i });
-    await expect(modalHeading).toBeHidden({ timeout: 5000 });
+    await expect(dialog).toBeHidden({ timeout: 5000 });
   });
 });

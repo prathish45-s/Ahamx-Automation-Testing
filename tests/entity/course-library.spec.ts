@@ -111,7 +111,6 @@ test.describe('Entity Profile — Course Library', () => {
       await sharedPage.keyboard.press('Escape');
     }
     
-    const modalHeading = sharedPage.getByRole('heading', { name: /create course|new course/i });
-    await expect(modalHeading).toBeHidden({ timeout: 5000 });
+    await expect(dialog).toBeHidden({ timeout: 5000 });
   });
 });

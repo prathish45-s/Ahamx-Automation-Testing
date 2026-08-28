@@ -12,6 +12,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    env:
+      BASE_URL: ${{ secrets.BASE_URL }}
+      USER_EMAIL: ${{ secrets.TEST_EMAIL }}
+      USER_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -31,15 +36,6 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          STUDENT_PROFILE_NAME: "Harshavardhan MG"
-          ENTITY_PROFILE_NAME: "IIT Madras"
-          DEFAULT_TIMEOUT: "30000"
-          LLM_RESPONSE_TIMEOUT: "60000"
-          NAVIGATION_TIMEOUT: "30000"
 
       - name: Upload Playwright report
         if: always()

@@ -74,7 +74,7 @@ test.describe('Entity Profile — Concept Library', () => {
     } else {
       await sharedPage.keyboard.press('Escape');
     }
-    await expect(modalHeading).toBeHidden({ timeout: 5000 });
+    await expect(dialog).toBeHidden({ timeout: 5000 });
   });
 
   test('TC-ENT-CL-05: Concept cards display edit and delete buttons', async ({ conceptManager, sharedPage }) => {
@@ -134,8 +134,6 @@ test.describe('Entity Profile — Concept Library', () => {
       await sharedPage.keyboard.press('Escape');
     }
     
-    // Verify modal is gone by checking the heading is no longer visible
-    const modalHeading = sharedPage.getByRole('heading', { name: /add concept|create concept|new concept/i });
-    await expect(modalHeading).toBeHidden({ timeout: 5000 });
+    await expect(dialog).toBeHidden({ timeout: 5000 });
   });
 });
