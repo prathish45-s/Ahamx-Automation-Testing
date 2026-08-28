@@ -83,8 +83,10 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
       await page.waitForURL(/\/home\/bodhi/, { timeout: 60000, waitUntil: 'domcontentloaded' });
     } catch (error) {
       console.log('[global-setup] Second login attempt failed. Taking screenshot...');
-      await page.screenshot({ path: 'login-failure-ci.png', fullPage: true });
-      console.log('[global-setup] Screenshot saved as login-failure-ci.png');
+      const reportDir = path.resolve(__dirname, 'playwright-report');
+      if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
+      await page.screenshot({ path: path.join(reportDir, 'login-failure-ci.png'), fullPage: true });
+      console.log('[global-setup] Screenshot saved to playwright-report/login-failure-ci.png');
       throw error;
     }
   }
